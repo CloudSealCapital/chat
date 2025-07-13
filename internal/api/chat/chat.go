@@ -76,6 +76,24 @@ func (o *Api) VerifyCode(c *gin.Context) {
 	a2r.Call(c, chatpb.ChatClient.VerifyCode, o.chatClient)
 }
 
+func (o *Api) CheckAccount(c *gin.Context) {
+	reqUser, err := a2r.ParseRequest[chatpb.RegisterUserInfo](c)
+	if err != nil {
+		apiresp.GinError(c, err)
+		return
+	}
+
+	checkResp, err := o.chatClient.CheckUserExist(c, &chatpb.CheckUserExistReq{User: reqUser})
+	if err != nil {
+		log.ZDebug(c, "Not else", errs.Unwrap(err))
+		apiresp.GinError(c, err)
+		return
+	}
+	var result apistruct.CheckAccountExistResp
+	result.Exist = checkResp.GetIsRegistered()
+	apiresp.GinSuccess(c, &result)
+}
+
 func (o *Api) RegisterUser(c *gin.Context) {
 	req, err := a2r.ParseRequest[chatpb.RegisterUserReq](c)
 	if err != nil {

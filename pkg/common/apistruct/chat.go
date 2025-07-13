@@ -22,6 +22,10 @@ type UserRegisterResp struct {
 	UserID    string `json:"userID"`
 }
 
+type CheckAccountExistResp struct {
+	Exist bool `json:"exist"`
+}
+
 type LoginResp struct {
 	ImToken   string `json:"imToken"`
 	ChatToken string `json:"chatToken"`
