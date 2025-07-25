@@ -17,12 +17,13 @@ package chat
 import (
 	"context"
 	"errors"
-	"github.com/openimsdk/chat/pkg/eerrs"
-	"github.com/openimsdk/protocol/wrapperspb"
-	"github.com/openimsdk/tools/utils/stringutil"
 	"strconv"
 	"strings"
 	"time"
+
+	"github.com/openimsdk/chat/pkg/eerrs"
+	"github.com/openimsdk/protocol/wrapperspb"
+	"github.com/openimsdk/tools/utils/stringutil"
 
 	"github.com/openimsdk/chat/pkg/common/db/dbutil"
 	chatdb "github.com/openimsdk/chat/pkg/common/db/table/chat"
@@ -417,7 +418,7 @@ func (o *chatSvr) CheckUserExist(ctx context.Context, req *chat.CheckUserExistRe
 		}
 	}
 	if req.User.Email != "" {
-		account, err := o.Database.TakeCredentialByAccount(ctx, req.User.AreaCode)
+		account, err := o.Database.TakeCredentialByAccount(ctx, req.User.Email)
 		if err != nil && !errors.Is(err, mongo.ErrNoDocuments) {
 			return nil, err
 		}
