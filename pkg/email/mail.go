@@ -17,6 +17,7 @@ package email
 import (
 	"context"
 	"fmt"
+
 	"github.com/openimsdk/tools/errs"
 	"gopkg.in/gomail.v2"
 )
@@ -47,7 +48,7 @@ func (m *mail) Name() string {
 
 func (m *mail) SendMail(ctx context.Context, mail string, verifyCode string) error {
 	msg := gomail.NewMessage()
-	msg.SetHeader(`From`, m.senderMail)
+	msg.SetAddressHeader("From", m.senderMail, "Cloud Chat")
 	msg.SetHeader(`To`, []string{mail}...)
 	msg.SetHeader(`Subject`, m.title)
 	msg.SetBody(`text/html`, fmt.Sprintf("Your verification code is: %s. This code is valid for 5 minutes and should not be shared with others", verifyCode))
