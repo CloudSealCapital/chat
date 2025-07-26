@@ -32,6 +32,18 @@ func (o *chatSvr) SendVerifyCode(ctx context.Context, req *chat.SendVerifyCodeRe
 		if err := o.Admin.CheckRegister(ctx, req.Ip); err != nil {
 			return nil, err
 		}
+		// 用户已经存在不允许再次注册
+		exist, err := o.CheckUserExist(ctx, &chat.CheckUserExistReq{User: &chat.RegisterUserInfo{
+			AreaCode:    req.AreaCode,
+			PhoneNumber: req.PhoneNumber,
+			Email:       req.Email,
+		}})
+		if err != nil {
+			return nil, err
+		}
+		if exist.IsRegistered {
+			return nil, eerrs.ErrAccountAlreadyRegister.Wrap()
+		}
 		if req.Email == "" {
 			if req.AreaCode == "" || req.PhoneNumber == "" {
 				return nil, errs.ErrArgs.WrapMsg("area code or phone number is empty")
@@ -109,11 +121,20 @@ func (o *chatSvr) SendVerifyCode(ctx context.Context, req *chat.SendVerifyCodeRe
 		account = o.verifyCodeJoin(req.AreaCode, req.PhoneNumber)
 	}
 	now := time.Now()
+
+	countValid, err := o.Database.CountVerifyCodeRange(ctx, account, now.Add(-o.Code.ValidTime), now)
+	if err != nil {
+		return nil, err
+	}
+	if int(countValid) > 0 {
+		return nil, eerrs.ErrVerifyCodeSendFrequently.Wrap()
+	}
+
 	count, err := o.Database.CountVerifyCodeRange(ctx, account, now.Add(-o.Code.UintTime), now)
 	if err != nil {
 		return nil, err
 	}
-	if o.Code.MaxCount < int(count) {
+	if o.Code.MaxCount <= int(count) {
 		return nil, eerrs.ErrVerifyCodeSendFrequently.Wrap()
 	}
 	platformName := constantpb.PlatformIDToName(int(req.Platform))
