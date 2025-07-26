@@ -38,6 +38,7 @@ func (o *chatSvr) SendVerifyCode(ctx context.Context, req *chat.SendVerifyCodeRe
 			PhoneNumber: req.PhoneNumber,
 			Email:       req.Email,
 		}})
+		log.ZDebug(ctx, "enter VerificationCodeForRegister", "existed", exist.IsRegistered, "err", err)
 		if err != nil {
 			return nil, err
 		}
@@ -126,6 +127,7 @@ func (o *chatSvr) SendVerifyCode(ctx context.Context, req *chat.SendVerifyCodeRe
 	if err != nil {
 		return nil, err
 	}
+	log.ZDebug(ctx, "CountVerifyCodeRange", "countValid", countValid)
 	if int(countValid) > 0 {
 		return nil, eerrs.ErrVerifyCodeSendFrequently.Wrap()
 	}
@@ -134,6 +136,7 @@ func (o *chatSvr) SendVerifyCode(ctx context.Context, req *chat.SendVerifyCodeRe
 	if err != nil {
 		return nil, err
 	}
+	log.ZDebug(ctx, "CountVerifyCodeRange", "count", count, "maxCount", o.Code.MaxCount)
 	if o.Code.MaxCount <= int(count) {
 		return nil, eerrs.ErrVerifyCodeSendFrequently.Wrap()
 	}
