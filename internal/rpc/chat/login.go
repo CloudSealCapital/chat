@@ -38,13 +38,13 @@ func (o *chatSvr) SendVerifyCode(ctx context.Context, req *chat.SendVerifyCodeRe
 			PhoneNumber: req.PhoneNumber,
 			Email:       req.Email,
 		}})
-		log.ZDebug(ctx, "enter VerificationCodeForRegister", "existed", exist.IsRegistered, "err", err)
 		if err != nil {
 			return nil, err
 		}
 		if exist.IsRegistered {
 			return nil, eerrs.ErrAccountAlreadyRegister.Wrap()
 		}
+		log.ZDebug(ctx, "enter VerificationCodeForRegister", "existed", exist.IsRegistered, "err", err)
 		if req.Email == "" {
 			if req.AreaCode == "" || req.PhoneNumber == "" {
 				return nil, errs.ErrArgs.WrapMsg("area code or phone number is empty")
