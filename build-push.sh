@@ -11,5 +11,5 @@ docker build -f admin-api.Dockerfile -t registry.cn-hangzhou.aliyuncs.com/caa/ad
 docker push registry.cn-hangzhou.aliyuncs.com/caa/admin-api:latest
 
 ## api-rpc
-docker docker build -f api-rpc.Dockerfile -t registry.cn-hangzhou.aliyuncs.com/caa/api-rpc:latest .
-docker push registry.cn-hangzhou.aliyuncs.com/caa/api-rpc:latest
+docker docker build -f admin-rpc.Dockerfile -t registry.cn-hangzhou.aliyuncs.com/caa/admin-rpc:latest .
+docker push registry.cn-hangzhou.aliyuncs.com/caa/admin-rpc:latest
