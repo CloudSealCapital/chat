@@ -125,6 +125,7 @@ func Start(ctx context.Context, index int, cfg *Config) error {
 }
 
 func SetChatRoute(router gin.IRouter, chat *Api, mw *chatmw.MW) {
+	router = router.Group("/chat")
 	account := router.Group("/account")
 	account.POST("/code/send", chat.SendVerifyCode)                  // Send verification code
 	account.POST("/code/verify", chat.VerifyCode)                    // Verify the verification code
