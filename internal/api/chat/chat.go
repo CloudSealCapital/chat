@@ -30,7 +30,6 @@ import (
 	"github.com/openimsdk/protocol/sdkws"
 	"github.com/openimsdk/tools/a2r"
 	"github.com/openimsdk/tools/apiresp"
-	"github.com/openimsdk/tools/errs"
 	"github.com/openimsdk/tools/log"
 )
 
@@ -85,7 +84,7 @@ func (o *Api) CheckAccount(c *gin.Context) {
 
 	checkResp, err := o.chatClient.CheckUserExist(c, &chatpb.CheckUserExistReq{User: reqUser})
 	if err != nil {
-		log.ZDebug(c, "Not else", errs.Unwrap(err))
+		log.ZDebug(c, "Not else", err.Error())
 		apiresp.GinError(c, err)
 		return
 	}
@@ -117,7 +116,7 @@ func (o *Api) RegisterUser(c *gin.Context) {
 
 	checkResp, err := o.chatClient.CheckUserExist(rpcCtx, &chatpb.CheckUserExistReq{User: req.User})
 	if err != nil {
-		log.ZDebug(rpcCtx, "Not else", errs.Unwrap(err))
+		log.ZDebug(rpcCtx, "Not else", err.Error())
 		apiresp.GinError(c, err)
 		return
 	}
