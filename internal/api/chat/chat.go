@@ -30,7 +30,6 @@ import (
 	"github.com/openimsdk/protocol/sdkws"
 	"github.com/openimsdk/tools/a2r"
 	"github.com/openimsdk/tools/apiresp"
-	"github.com/openimsdk/tools/log"
 )
 
 func New(chatClient chatpb.ChatClient, adminClient admin.AdminClient, imApiCaller imapi.CallerInterface, api *util.Api) *Api {
@@ -84,7 +83,6 @@ func (o *Api) CheckAccount(c *gin.Context) {
 
 	checkResp, err := o.chatClient.CheckUserExist(c, &chatpb.CheckUserExistReq{User: reqUser})
 	if err != nil {
-		log.ZDebug(c, "Not else", err.Error())
 		apiresp.GinError(c, err)
 		return
 	}
@@ -116,7 +114,6 @@ func (o *Api) RegisterUser(c *gin.Context) {
 
 	checkResp, err := o.chatClient.CheckUserExist(rpcCtx, &chatpb.CheckUserExistReq{User: req.User})
 	if err != nil {
-		log.ZDebug(rpcCtx, "Not else", err.Error())
 		apiresp.GinError(c, err)
 		return
 	}
@@ -129,7 +126,6 @@ func (o *Api) RegisterUser(c *gin.Context) {
 		// if User is  not exist in SDK server. You need delete this user and register new user again.
 		if isUserNotExist {
 			_, err := o.chatClient.DelUserAccount(rpcCtx, &chatpb.DelUserAccountReq{UserIDs: []string{checkResp.Userid}})
-			log.ZDebug(c, "Delete Succsssss", checkResp.Userid)
 			if err != nil {
 				apiresp.GinError(c, err)
 				return
