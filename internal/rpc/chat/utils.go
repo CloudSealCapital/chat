@@ -66,6 +66,7 @@ func (o *chatSvr) checkRegisterInfo(ctx context.Context, user *chat.RegisterUser
 	if user == nil {
 		return errs.ErrArgs.WrapMsg("user is nil")
 	}
+	user.Account = strings.TrimSpace(user.Account)
 	if user.Email == "" && !(user.PhoneNumber != "" && user.AreaCode != "") && (!isAdmin || user.Account == "") {
 		return errs.ErrArgs.WrapMsg("at least one valid account is required")
 	}
