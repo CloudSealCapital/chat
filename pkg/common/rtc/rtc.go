@@ -1,8 +1,9 @@
 package rtc
 
 import (
-	"github.com/livekit/protocol/auth"
 	"time"
+
+	"github.com/livekit/protocol/auth"
 )
 
 func NewLiveKit(key, secret, url string) *LiveKit {
@@ -23,8 +24,9 @@ func (l *LiveKit) GetLiveKitURL() string {
 
 func (l *LiveKit) GetLiveKitToken(room string, identity string) (string, error) {
 	grant := &auth.VideoGrant{
-		RoomJoin: true,
-		Room:     room,
+		RoomJoin:             true,
+		Room:                 room,
+		CanUpdateOwnMetadata: *true,
 	}
 	return l.token.AddGrant(grant).SetIdentity(identity).SetValidFor(time.Hour).ToJWT()
 }
