@@ -24,10 +24,14 @@ func (l *LiveKit) GetLiveKitURL() string {
 
 func (l *LiveKit) GetLiveKitToken(room string, identity string) (string, error) {
 	canUpdateOwnMetadata := true
+	canPublish := true
+	canSubscribe := true
 	grant := &auth.VideoGrant{
 		RoomJoin:             true,
 		Room:                 room,
 		CanUpdateOwnMetadata: &canUpdateOwnMetadata,
+		CanPublish:           &canPublish,
+		CanSubscribe:         &canSubscribe,
 	}
 	return l.token.AddGrant(grant).SetIdentity(identity).SetValidFor(time.Hour).ToJWT()
 }
