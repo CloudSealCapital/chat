@@ -34,6 +34,7 @@ func Build() {
 	if len(bin) != 0 {
 		bin = bin[1:]
 	}
+
 	mageutil.Build(bin, nil)
 }
 
@@ -61,7 +62,6 @@ func Start() {
 		mageutil.PrintRed("setMaxOpenFiles failed " + err.Error())
 		os.Exit(1)
 	}
-	mageutil.StartToolsAndServices()
 
 	flag.Parse()
 	bin := flag.Args()
