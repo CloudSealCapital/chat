@@ -39,6 +39,9 @@ type UserFullInfo struct {
 	AllowVibration   int32                  `protobuf:"varint,14,opt,name=allowVibration,proto3" json:"allowVibration"`
 	GlobalRecvMsgOpt int32                  `protobuf:"varint,15,opt,name=globalRecvMsgOpt,proto3" json:"globalRecvMsgOpt"`
 	RegisterType     int32                  `protobuf:"varint,16,opt,name=registerType,proto3" json:"registerType"`
+	Profile          string                 `protobuf:"bytes,17,opt,name=profile,proto3" json:"profile"`
+	IsShowAccount    bool                   `protobuf:"varint,18,opt,name=isShowAccount,proto3" json:"isShowAccount"`
+	IsShowEmail      bool                   `protobuf:"varint,19,opt,name=isShowEmail,proto3" json:"isShowEmail"`
 	unknownFields    protoimpl.UnknownFields
 	sizeCache        protoimpl.SizeCache
 }
@@ -185,6 +188,27 @@ func (x *UserFullInfo) GetRegisterType() int32 {
 	return 0
 }
 
+func (x *UserFullInfo) GetProfile() string {
+	if x != nil {
+		return x.Profile
+	}
+	return ""
+}
+
+func (x *UserFullInfo) GetIsShowAccount() bool {
+	if x != nil {
+		return x.IsShowAccount
+	}
+	return false
+}
+
+func (x *UserFullInfo) GetIsShowEmail() bool {
+	if x != nil {
+		return x.IsShowEmail
+	}
+	return false
+}
+
 type UserPublicInfo struct {
 	state         protoimpl.MessageState `protogen:"open.v1"`
 	UserID        string                 `protobuf:"bytes,1,opt,name=userID,proto3" json:"userID"`
@@ -194,6 +218,9 @@ type UserPublicInfo struct {
 	FaceURL       string                 `protobuf:"bytes,5,opt,name=faceURL,proto3" json:"faceURL"`
 	Gender        int32                  `protobuf:"varint,6,opt,name=gender,proto3" json:"gender"`
 	Level         int32                  `protobuf:"varint,7,opt,name=level,proto3" json:"level"`
+	Profile       string                 `protobuf:"bytes,8,opt,name=profile,proto3" json:"profile"`
+	IsShowAccount bool                   `protobuf:"varint,9,opt,name=isShowAccount,proto3" json:"isShowAccount"`
+	IsShowEmail   bool                   `protobuf:"varint,10,opt,name=isShowEmail,proto3" json:"isShowEmail"`
 	unknownFields protoimpl.UnknownFields
 	sizeCache     protoimpl.SizeCache
 }
@@ -275,6 +302,27 @@ func (x *UserPublicInfo) GetLevel() int32 {
 		return x.Level
 	}
 	return 0
+}
+
+func (x *UserPublicInfo) GetProfile() string {
+	if x != nil {
+		return x.Profile
+	}
+	return ""
+}
+
+func (x *UserPublicInfo) GetIsShowAccount() bool {
+	if x != nil {
+		return x.IsShowAccount
+	}
+	return false
+}
+
+func (x *UserPublicInfo) GetIsShowEmail() bool {
+	if x != nil {
+		return x.IsShowEmail
+	}
+	return false
 }
 
 type UserIdentity struct {
@@ -605,7 +653,7 @@ var File_common_common_proto protoreflect.FileDescriptor
 
 const file_common_common_proto_rawDesc = "" +
 	"\n" +
-	"\x13common/common.proto\x12\x12openim.chat.common\"\xe8\x03\n" +
+	"\x13common/common.proto\x12\x12openim.chat.common\"\xca\x04\n" +
 	"\fUserFullInfo\x12\x16\n" +
 	"\x06userID\x18\x01 \x01(\tR\x06userID\x12\x1a\n" +
 	"\bpassword\x18\x02 \x01(\tR\bpassword\x12\x18\n" +
@@ -623,7 +671,10 @@ const file_common_common_proto_rawDesc = "" +
 	"\tallowBeep\x18\r \x01(\x05R\tallowBeep\x12&\n" +
 	"\x0eallowVibration\x18\x0e \x01(\x05R\x0eallowVibration\x12*\n" +
 	"\x10globalRecvMsgOpt\x18\x0f \x01(\x05R\x10globalRecvMsgOpt\x12\"\n" +
-	"\fregisterType\x18\x10 \x01(\x05R\fregisterType\"\xbc\x01\n" +
+	"\fregisterType\x18\x10 \x01(\x05R\fregisterType\x12\x18\n" +
+	"\aprofile\x18\x11 \x01(\tR\aprofile\x12$\n" +
+	"\risShowAccount\x18\x12 \x01(\bR\risShowAccount\x12 \n" +
+	"\visShowEmail\x18\x13 \x01(\bR\visShowEmail\"\x9e\x02\n" +
 	"\x0eUserPublicInfo\x12\x16\n" +
 	"\x06userID\x18\x01 \x01(\tR\x06userID\x12\x18\n" +
 	"\aaccount\x18\x02 \x01(\tR\aaccount\x12\x14\n" +
@@ -631,7 +682,11 @@ const file_common_common_proto_rawDesc = "" +
 	"\bnickname\x18\x04 \x01(\tR\bnickname\x12\x18\n" +
 	"\afaceURL\x18\x05 \x01(\tR\afaceURL\x12\x16\n" +
 	"\x06gender\x18\x06 \x01(\x05R\x06gender\x12\x14\n" +
-	"\x05level\x18\a \x01(\x05R\x05level\"\xb4\x01\n" +
+	"\x05level\x18\a \x01(\x05R\x05level\x12\x18\n" +
+	"\aprofile\x18\b \x01(\tR\aprofile\x12$\n" +
+	"\risShowAccount\x18\t \x01(\bR\risShowAccount\x12 \n" +
+	"\visShowEmail\x18\n" +
+	" \x01(\bR\visShowEmail\"\xb4\x01\n" +
 	"\fUserIdentity\x12\x14\n" +
 	"\x05email\x18\x01 \x01(\tR\x05email\x12\x1a\n" +
 	"\bareaCode\x18\x02 \x01(\tR\bareaCode\x12 \n" +

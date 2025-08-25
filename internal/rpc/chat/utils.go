@@ -2,6 +2,9 @@ package chat
 
 import (
 	"context"
+	"strconv"
+	"strings"
+
 	"github.com/openimsdk/chat/pkg/common/db/dbutil"
 	table "github.com/openimsdk/chat/pkg/common/db/table/chat"
 	"github.com/openimsdk/chat/pkg/eerrs"
@@ -10,8 +13,6 @@ import (
 	"github.com/openimsdk/tools/errs"
 	"github.com/openimsdk/tools/utils/datautil"
 	"github.com/openimsdk/tools/utils/stringutil"
-	"strconv"
-	"strings"
 )
 
 func DbToPbAttribute(attribute *table.Attribute) *common.UserPublicInfo {
@@ -19,13 +20,16 @@ func DbToPbAttribute(attribute *table.Attribute) *common.UserPublicInfo {
 		return nil
 	}
 	return &common.UserPublicInfo{
-		UserID:   attribute.UserID,
-		Account:  attribute.Account,
-		Email:    attribute.Email,
-		Nickname: attribute.Nickname,
-		FaceURL:  attribute.FaceURL,
-		Gender:   attribute.Gender,
-		Level:    attribute.Level,
+		UserID:        attribute.UserID,
+		Account:       attribute.Account,
+		Email:         attribute.Email,
+		Nickname:      attribute.Nickname,
+		FaceURL:       attribute.FaceURL,
+		Gender:        attribute.Gender,
+		Level:         attribute.Level,
+		Profile:       attribute.Profile,
+		IsShowAccount: attribute.IsShowAccount,
+		IsShowEmail:   attribute.IsShowEmail,
 	}
 }
 
@@ -51,6 +55,9 @@ func DbToPbUserFullInfo(attribute *table.Attribute) *common.UserFullInfo {
 		AllowVibration:   attribute.AllowVibration,
 		GlobalRecvMsgOpt: attribute.GlobalRecvMsgOpt,
 		RegisterType:     attribute.RegisterType,
+		Profile:          attribute.Profile,
+		IsShowAccount:    attribute.IsShowAccount,
+		IsShowEmail:      attribute.IsShowEmail,
 	}
 }
 

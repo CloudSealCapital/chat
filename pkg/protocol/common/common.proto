@@ -20,6 +20,9 @@ message UserFullInfo{
   int32  allowVibration = 14;
   int32 globalRecvMsgOpt = 15;
   int32 registerType = 16;
+  string profile = 17;
+  bool isShowAccount = 18;
+  bool isShowEmail = 19;
 }
 
 message UserPublicInfo{
@@ -30,6 +33,9 @@ message UserPublicInfo{
   string  faceURL = 5;
   int32  gender = 6;
   int32  level = 7;
+  string profile = 8;
+  bool isShowAccount = 9;
+  bool isShowEmail = 10;
 }
 
 message UserIdentity {
