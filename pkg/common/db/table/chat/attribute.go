@@ -25,6 +25,9 @@ type Attribute struct {
 	AllowAddFriend   int32     `bson:"allow_add_friend"`
 	GlobalRecvMsgOpt int32     `bson:"global_recv_msg_opt"`
 	RegisterType     int32     `bson:"register_type"`
+	Profile          string    `bson:"profile,omitempty"`
+	IsShowAccount    bool      `bson:"is_show_account,omitempty"`
+	IsShowEmail      bool      `bson:"is_show_email,omitemtpy"`
 }
 
 func (Attribute) TableName() string {

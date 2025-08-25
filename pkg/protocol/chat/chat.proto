@@ -46,6 +46,9 @@ message UpdateUserInfoReq {
   openim.protobuf.Int32Value allowVibration = 13;
   openim.protobuf.Int32Value globalRecvMsgOpt = 14;
   openim.protobuf.Int32Value RegisterType = 15;
+  openim.protobuf.StringValue profile = 16;
+  openim.protobuf.BoolValue isShowAccount = 17;
+  openim.protobuf.BoolValue isShowEmail = 18;
 }
 
 message UpdateUserInfoResp {

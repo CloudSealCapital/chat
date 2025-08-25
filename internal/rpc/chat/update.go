@@ -15,9 +15,10 @@
 package chat
 
 import (
+	"time"
+
 	"github.com/openimsdk/chat/pkg/common/constant"
 	chatdb "github.com/openimsdk/chat/pkg/common/db/table/chat"
-	"time"
 
 	"github.com/openimsdk/tools/errs"
 
@@ -64,6 +65,15 @@ func ToDBAttributeUpdate(req *chat.UpdateUserInfoReq) (map[string]any, error) {
 	}
 	if req.GlobalRecvMsgOpt != nil {
 		update["global_recv_msg_opt"] = req.GlobalRecvMsgOpt.Value
+	}
+	if req.Profile != nil {
+		update["profile"] = req.Profile.Value
+	}
+	if req.IsShowEmail != nil {
+		update["is_show_email"] = req.IsShowEmail.Value
+	}
+	if req.IsShowAccount != nil {
+		update["is_show_account"] = req.IsShowAccount.Value
 	}
 	//if len(update) == 0 {
 	//	return nil, errs.ErrArgs.WrapMsg("no update info")
