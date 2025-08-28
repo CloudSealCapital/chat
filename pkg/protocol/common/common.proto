@@ -23,6 +23,7 @@ message UserFullInfo{
   string profile = 17;
   bool isShowAccount = 18;
   bool isShowEmail = 19;
+  string backgroundUrl = 20;
 }
 
 message UserPublicInfo{

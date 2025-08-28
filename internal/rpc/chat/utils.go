@@ -58,6 +58,7 @@ func DbToPbUserFullInfo(attribute *table.Attribute) *common.UserFullInfo {
 		Profile:          attribute.Profile,
 		IsShowAccount:    attribute.IsShowAccount,
 		IsShowEmail:      attribute.IsShowEmail,
+		BackgroundUrl:    attribute.BackgroudUrl,
 	}
 }
 

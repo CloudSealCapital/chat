@@ -28,6 +28,7 @@ type Attribute struct {
 	Profile          string    `bson:"profile,omitempty"`
 	IsShowAccount    bool      `bson:"is_show_account,omitempty"`
 	IsShowEmail      bool      `bson:"is_show_email,omitemtpy"`
+	BackgroudUrl     string    `bson:"background_url,omitempty"`
 }
 
 func (Attribute) TableName() string {

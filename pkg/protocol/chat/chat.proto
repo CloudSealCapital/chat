@@ -49,6 +49,7 @@ message UpdateUserInfoReq {
   openim.protobuf.StringValue profile = 16;
   openim.protobuf.BoolValue isShowAccount = 17;
   openim.protobuf.BoolValue isShowEmail = 18;
+  openim.protobuf.StringValue backgroundUrl = 19;
 }
 
 message UpdateUserInfoResp {

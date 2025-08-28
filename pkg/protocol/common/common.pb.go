@@ -42,6 +42,7 @@ type UserFullInfo struct {
 	Profile          string                 `protobuf:"bytes,17,opt,name=profile,proto3" json:"profile"`
 	IsShowAccount    bool                   `protobuf:"varint,18,opt,name=isShowAccount,proto3" json:"isShowAccount"`
 	IsShowEmail      bool                   `protobuf:"varint,19,opt,name=isShowEmail,proto3" json:"isShowEmail"`
+	BackgroundUrl    string                 `protobuf:"bytes,20,opt,name=backgroundUrl,proto3" json:"backgroundUrl"`
 	unknownFields    protoimpl.UnknownFields
 	sizeCache        protoimpl.SizeCache
 }
@@ -207,6 +208,13 @@ func (x *UserFullInfo) GetIsShowEmail() bool {
 		return x.IsShowEmail
 	}
 	return false
+}
+
+func (x *UserFullInfo) GetBackgroundUrl() string {
+	if x != nil {
+		return x.BackgroundUrl
+	}
+	return ""
 }
 
 type UserPublicInfo struct {
@@ -653,7 +661,7 @@ var File_common_common_proto protoreflect.FileDescriptor
 
 const file_common_common_proto_rawDesc = "" +
 	"\n" +
-	"\x13common/common.proto\x12\x12openim.chat.common\"\xca\x04\n" +
+	"\x13common/common.proto\x12\x12openim.chat.common\"\xf0\x04\n" +
 	"\fUserFullInfo\x12\x16\n" +
 	"\x06userID\x18\x01 \x01(\tR\x06userID\x12\x1a\n" +
 	"\bpassword\x18\x02 \x01(\tR\bpassword\x12\x18\n" +
@@ -674,7 +682,8 @@ const file_common_common_proto_rawDesc = "" +
 	"\fregisterType\x18\x10 \x01(\x05R\fregisterType\x12\x18\n" +
 	"\aprofile\x18\x11 \x01(\tR\aprofile\x12$\n" +
 	"\risShowAccount\x18\x12 \x01(\bR\risShowAccount\x12 \n" +
-	"\visShowEmail\x18\x13 \x01(\bR\visShowEmail\"\x9e\x02\n" +
+	"\visShowEmail\x18\x13 \x01(\bR\visShowEmail\x12$\n" +
+	"\rbackgroundUrl\x18\x14 \x01(\tR\rbackgroundUrl\"\x9e\x02\n" +
 	"\x0eUserPublicInfo\x12\x16\n" +
 	"\x06userID\x18\x01 \x01(\tR\x06userID\x12\x18\n" +
 	"\aaccount\x18\x02 \x01(\tR\aaccount\x12\x14\n" +

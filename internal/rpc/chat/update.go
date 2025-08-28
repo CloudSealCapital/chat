@@ -75,6 +75,9 @@ func ToDBAttributeUpdate(req *chat.UpdateUserInfoReq) (map[string]any, error) {
 	if req.IsShowAccount != nil {
 		update["is_show_account"] = req.IsShowAccount.Value
 	}
+	if req.BackgroundUrl != nil {
+		update["background_url"] = req.BackgroundUrl.Value
+	}
 	//if len(update) == 0 {
 	//	return nil, errs.ErrArgs.WrapMsg("no update info")
 	//}
