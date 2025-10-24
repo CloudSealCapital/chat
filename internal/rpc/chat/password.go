@@ -16,6 +16,7 @@ package chat
 
 import (
 	"context"
+
 	"github.com/openimsdk/tools/errs"
 
 	"github.com/openimsdk/chat/pkg/common/constant"
@@ -27,11 +28,11 @@ func (o *chatSvr) ResetPassword(ctx context.Context, req *chat.ResetPasswordReq)
 	if req.Password == "" {
 		return nil, errs.ErrArgs.WrapMsg("password must be set")
 	}
-	if req.AreaCode == "" || req.PhoneNumber == "" {
-		if !(req.AreaCode == "" && req.PhoneNumber == "") {
-			return nil, errs.ErrArgs.WrapMsg("area code and phone number must set together")
-		}
-	}
+	// if req.AreaCode == "" || req.PhoneNumber == "" {
+	// 	if !(req.AreaCode == "" && req.PhoneNumber == "") {
+	// 		return nil, errs.ErrArgs.WrapMsg("area code and phone number must set together")
+	// 	}
+	// }
 	var verifyCodeID string
 	var err error
 	if req.Email == "" {
