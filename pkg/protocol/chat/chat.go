@@ -67,16 +67,7 @@ func (x *SendVerifyCodeReq) Check() error {
 		return errs.ErrArgs.WrapMsg("usedFor flied is empty")
 	}
 	if x.Email == "" {
-		if x.AreaCode == "" {
-			return errs.ErrArgs.WrapMsg("AreaCode is empty")
-		} else if err := AreaCodeCheck(x.AreaCode); err != nil {
-			return err
-		}
-		if x.PhoneNumber == "" {
-			return errs.ErrArgs.WrapMsg("PhoneNumber is empty")
-		} else if err := PhoneNumberCheck(x.PhoneNumber); err != nil {
-			return err
-		}
+		return errs.ErrArgs.WrapMsg("Email is empty")
 	} else {
 		if err := EmailCheck(x.Email); err != nil {
 			return err
@@ -88,16 +79,7 @@ func (x *SendVerifyCodeReq) Check() error {
 
 func (x *VerifyCodeReq) Check() error {
 	if x.Email == "" {
-		if x.AreaCode == "" {
-			return errs.ErrArgs.WrapMsg("AreaCode is empty")
-		} else if err := AreaCodeCheck(x.AreaCode); err != nil {
-			return err
-		}
-		if x.PhoneNumber == "" {
-			return errs.ErrArgs.WrapMsg("PhoneNumber is empty")
-		} else if err := PhoneNumberCheck(x.PhoneNumber); err != nil {
-			return err
-		}
+		return errs.ErrArgs.WrapMsg("Email is empty")
 	} else {
 		if err := EmailCheck(x.Email); err != nil {
 			return err
@@ -123,14 +105,9 @@ func (x *RegisterUserReq) Check() error {
 		return errs.ErrArgs.WrapMsg("user is empty")
 	}
 	if x.User.Email == "" {
-		if x.User.AreaCode == "" {
-			return errs.ErrArgs.WrapMsg("AreaCode is empty")
-		} else if err := AreaCodeCheck(x.User.AreaCode); err != nil {
-			return err
-		}
-		if x.User.PhoneNumber == "" {
-			return errs.ErrArgs.WrapMsg("PhoneNumber is empty")
-		} else if err := PhoneNumberCheck(x.User.PhoneNumber); err != nil {
+		if x.User.Account == "" {
+			return errs.ErrArgs.WrapMsg("Account is empty")
+		} else if err := EmailCheck(x.User.Account); err != nil {
 			return err
 		}
 	} else {
@@ -138,6 +115,7 @@ func (x *RegisterUserReq) Check() error {
 			return err
 		}
 	}
+
 	return nil
 }
 
@@ -146,14 +124,9 @@ func (x *LoginReq) Check() error {
 		return errs.ErrArgs.WrapMsg("platform is invalid")
 	}
 	if x.Email == "" {
-		if x.AreaCode == "" {
-			return errs.ErrArgs.WrapMsg("AreaCode is empty")
-		} else if err := AreaCodeCheck(x.AreaCode); err != nil {
-			return err
-		}
-		if x.PhoneNumber == "" {
-			return errs.ErrArgs.WrapMsg("PhoneNumber is empty")
-		} else if err := PhoneNumberCheck(x.PhoneNumber); err != nil {
+		if x.Account == "" {
+			return errs.ErrArgs.WrapMsg("Account is empty")
+		} else if err := EmailCheck(x.Account); err != nil {
 			return err
 		}
 	} else {
@@ -169,16 +142,7 @@ func (x *ResetPasswordReq) Check() error {
 		return errs.ErrArgs.WrapMsg("password is empty")
 	}
 	if x.Email == "" {
-		if x.AreaCode == "" {
-			return errs.ErrArgs.WrapMsg("AreaCode is empty")
-		} else if err := AreaCodeCheck(x.AreaCode); err != nil {
-			return err
-		}
-		if x.PhoneNumber == "" {
-			return errs.ErrArgs.WrapMsg("PhoneNumber is empty")
-		} else if err := PhoneNumberCheck(x.PhoneNumber); err != nil {
-			return err
-		}
+		return errs.ErrArgs.WrapMsg("Email is empty")
 	} else {
 		if err := EmailCheck(x.Email); err != nil {
 			return err
