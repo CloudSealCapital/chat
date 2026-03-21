@@ -16,7 +16,6 @@ package chat
 
 import (
 	"io"
-	"log"
 	"net/netip"
 	"time"
 
@@ -33,6 +32,7 @@ import (
 	"github.com/openimsdk/protocol/sdkws"
 	"github.com/openimsdk/tools/a2r"
 	"github.com/openimsdk/tools/apiresp"
+	"github.com/openimsdk/tools/log"
 )
 
 func New(chatClient chatpb.ChatClient, adminClient admin.AdminClient, imApiCaller imapi.CallerInterface, api *util.Api) *Api {
@@ -379,6 +379,7 @@ func (o *Api) GeoInfo(c *gin.Context) {
 		apiresp.GinError(c, err)
 		return
 	}
+	log.ZInfo(c, "client ip", ipStr)
 
 	db, err := geoip2.Open("geo_database/GeoLite2-Country.mmdb")
 	if err != nil {
@@ -392,7 +393,8 @@ func (o *Api) GeoInfo(c *gin.Context) {
 	}
 	record, err := db.Country(ip)
 	if err != nil {
-		log.Fatal(err)
+		apiresp.GinError(c, err)
+		return
 	}
 
 	apiresp.GinSuccess(c, apistruct.GeoResp{
