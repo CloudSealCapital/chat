@@ -135,3 +135,7 @@ type SendMsg struct {
 	// OfflinePushInfo contains information for offline push notifications.
 	OfflinePushInfo *sdkws.OfflinePushInfo `json:"offlinePushInfo"`
 }
+
+type GeoResp struct {
+	Code string `json:"code"`
+}

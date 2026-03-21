@@ -1,8 +1,8 @@
 module github.com/openimsdk/chat
 
-go 1.22.7
+go 1.24.0
 
-toolchain go1.23.2
+toolchain go1.24.11
 
 require (
 	github.com/gin-gonic/gin v1.9.1
@@ -29,6 +29,7 @@ require (
 	github.com/openimsdk/gomake v0.0.15-alpha.11
 	github.com/openimsdk/protocol v0.0.73-alpha.5
 	github.com/openimsdk/tools v0.0.50-alpha.89
+	github.com/oschwald/geoip2-golang/v2 v2.1.0
 	github.com/redis/go-redis/v9 v9.5.1
 	github.com/spf13/cobra v1.8.0
 	github.com/spf13/viper v1.18.2
@@ -93,6 +94,7 @@ require (
 	github.com/mohae/deepcopy v0.0.0-20170929034955-c48cc78d4826 // indirect
 	github.com/montanaflynn/stats v0.0.0-20171201202039-1bf9dbcd8cbe // indirect
 	github.com/munnerz/goautoneg v0.0.0-20191010083416-a7dc8b61c822 // indirect
+	github.com/oschwald/maxminddb-golang/v2 v2.1.1 // indirect
 	github.com/pelletier/go-toml/v2 v2.1.0 // indirect
 	github.com/richardlehane/mscfb v1.0.4 // indirect
 	github.com/richardlehane/msoleps v1.0.3 // indirect
@@ -128,7 +130,7 @@ require (
 	golang.org/x/net v0.29.0 // indirect
 	golang.org/x/oauth2 v0.23.0 // indirect
 	golang.org/x/sync v0.8.0 // indirect
-	golang.org/x/sys v0.25.0 // indirect
+	golang.org/x/sys v0.38.0 // indirect
 	golang.org/x/term v0.24.0 // indirect
 	golang.org/x/text v0.18.0 // indirect
 	golang.org/x/time v0.5.0 // indirect

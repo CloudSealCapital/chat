@@ -18,5 +18,6 @@ RUN apk add --no-cache ca-certificates
 WORKDIR /app
 
 COPY --from=builder /app/chat-api .
+COPY --from=builder /app/geo_database ./geo_database
 
 ENTRYPOINT ["./chat-api"]

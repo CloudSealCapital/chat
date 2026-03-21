@@ -16,9 +16,12 @@ package chat
 
 import (
 	"io"
+	"log"
+	"net/netip"
 	"time"
 
 	"github.com/openimsdk/chat/internal/api/util"
+	"github.com/oschwald/geoip2-golang/v2"
 
 	"github.com/gin-gonic/gin"
 	"github.com/openimsdk/chat/pkg/common/apistruct"
@@ -368,4 +371,31 @@ func (o *Api) LatestApplicationVersion(c *gin.Context) {
 
 func (o *Api) PageApplicationVersion(c *gin.Context) {
 	a2r.Call(c, admin.AdminClient.PageApplicationVersion, o.adminClient)
+}
+
+func (o *Api) GeoInfo(c *gin.Context) {
+	ipStr, err := o.GetClientIP(c)
+	if err != nil {
+		apiresp.GinError(c, err)
+		return
+	}
+
+	db, err := geoip2.Open("geo_database/GeoLite2-Country.mmdb")
+	if err != nil {
+		apiresp.GinError(c, err)
+		return
+	}
+	ip, err := netip.ParseAddr(ipStr)
+	if err != nil {
+		apiresp.GinError(c, err)
+		return
+	}
+	record, err := db.Country(ip)
+	if err != nil {
+		log.Fatal(err)
+	}
+
+	apiresp.GinSuccess(c, apistruct.GeoResp{
+		Code: record.Country.ISOCode,
+	})
 }
