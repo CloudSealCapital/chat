@@ -379,7 +379,7 @@ func (o *Api) GeoInfo(c *gin.Context) {
 		apiresp.GinError(c, err)
 		return
 	}
-	log.ZInfo(c, "client ip", ipStr)
+	log.ZInfo(c, "client ip", "ip", ipStr)
 
 	db, err := geoip2.Open("geo_database/GeoLite2-Country.mmdb")
 	if err != nil {
